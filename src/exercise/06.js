@@ -10,6 +10,10 @@ function UsernameForm({onSubmitUsername}) {
   // events (which refreshes the page).
   // 📜 https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
   //
+  const handleOnSubmit = event => {
+    event.preventDefault()
+    onSubmitUsername(event.target.elements[0].value)
+  }
   // 🐨 get the value from the username input (using whichever method
   // you prefer from the options mentioned in the instructions)
   // 💰 For example: event.target.elements[0].value
@@ -20,10 +24,10 @@ function UsernameForm({onSubmitUsername}) {
   // 🐨 make sure to associate the label to the input.
   // to do so, set the value of 'htmlFor' prop of the label to the id of input
   return (
-    <form>
+    <form onSubmit={handleOnSubmit}>
       <div>
-        <label>Username:</label>
-        <input type="text" />
+        <label htmlFor="username">Username:</label>
+        <input id="username" type="text" />
       </div>
       <button type="submit">Submit</button>
     </form>
