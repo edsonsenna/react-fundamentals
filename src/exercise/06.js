@@ -11,19 +11,16 @@ function UsernameForm({onSubmitUsername}) {
   // 📜 https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
   //
 
-  const inputRef = React.useRef(null)
-
-  const [error, setError] = React.useState(null)
+  const [username, setUsername] = React.useState('')
 
   const handleOnSubmit = event => {
     event.preventDefault()
-    onSubmitUsername(inputRef.current.value)
+    onSubmitUsername(username)
   }
 
   const handleOnChange = event => {
     const value = event.currentTarget.value
-    const isValid = value === value.toLowerCase()
-    setError(isValid ? null : 'Username must be lower case')
+    setUsername(value.toLowerCase())
   }
   // 🐨 get the value from the username input (using whichever method
   // you prefer from the options mentioned in the instructions)
@@ -41,20 +38,11 @@ function UsernameForm({onSubmitUsername}) {
         <input
           id="username"
           type="text"
-          ref={inputRef}
+          value={username}
           onChange={handleOnChange}
         />
       </div>
-      {error ? (
-        <div>
-          <span role="alert" style={{color: 'red'}}>
-            {error}
-          </span>
-        </div>
-      ) : null}
-      <button type="submit" disabled={error}>
-        Submit
-      </button>
+      <button type="submit">Submit</button>
     </form>
   )
 }
