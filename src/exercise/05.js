@@ -16,18 +16,21 @@ import '../box-styles.css'
 // 💰 Here are available style attributes: backgroundColor, fontStyle
 
 const Box = props => {
-  const {className = '', style = {}, text = 'small'} = props
+  const {style = {}, size = 'small'} = props
+  const sizeClassName = size ? `box--${size}` : ''
   return (
-    <div className={`box ${className}`} style={{fontStyle: 'italic', ...style}}>
-      {text}
+    <div
+      className={`box ${sizeClassName}`}
+      style={{fontStyle: 'italic', ...style}}
+    >
+      {`${size} ${style?.backgroundColor} box`}
     </div>
   )
 }
 
 Box.propTypes = {
-  className: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
   style: PropTypes.shape.isRequired,
-  text: PropTypes.string.isRequired,
 }
 
 // const smallBox = <div className="box box--small">small lightblue box</div>
@@ -37,21 +40,9 @@ Box.propTypes = {
 function App() {
   return (
     <div>
-      <Box
-        className="box--small"
-        style={{backgroundColor: 'lightblue'}}
-        text="small lightblue box"
-      />
-      <Box
-        className="box--medium"
-        style={{backgroundColor: 'pink'}}
-        text="medium pink box"
-      />
-      <Box
-        className="box--large"
-        style={{backgroundColor: 'orange'}}
-        text="large orange box"
-      />
+      <Box size="small" style={{backgroundColor: 'lightblue'}} />
+      <Box size="medium" style={{backgroundColor: 'pink'}} />
+      <Box size="large" style={{backgroundColor: 'orange'}} />
     </div>
     // <div>
     //   {smallBox}
